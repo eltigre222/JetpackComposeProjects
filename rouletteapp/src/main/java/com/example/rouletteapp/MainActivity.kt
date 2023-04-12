@@ -10,6 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.rouletteapp.rule_screen.RuleScreen
+import com.example.rouletteapp.ui.theme.Green
 import com.example.rouletteapp.ui.theme.JetpackComposeProjectsTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,24 +22,11 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = Green
                 ) {
-                    Greeting("Android")
+                    RuleScreen()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    JetpackComposeProjectsTheme {
-        Greeting("Android")
     }
 }
