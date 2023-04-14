@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "JetpackComposeProjects"
 include ':app'
 include ':rouletteapp'
+include ':bottomnavigationlesson'
