@@ -7,23 +7,20 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.topappbar.ui.theme.JetpackComposeProjectsTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,18 +32,31 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-@OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MainScreen(context: Context) {
+    val coroutineScope = rememberCoroutineScope()
+    val scaffoldState = rememberScaffoldState()
+
     Scaffold(
+        scaffoldState = scaffoldState,
+        snackbarHost = { host ->
+            SnackbarHost(hostState = host){ data ->
+                Snackbar(
+                    backgroundColor = Color.White,
+                    snackbarData = data,
+                    shape = RoundedCornerShape(20.dp),
+                    contentColor = Color.Red,
+                    modifier = Modifier.padding(bottom = 50.dp)
+                )
+            }
+        },
         topBar = {
             TopAppBar(
                 title = {
                     Text(text = "Menu")
                 },
-                Modifier.background(Color.White),
+                backgroundColor = Color.White,
                 navigationIcon = {
                     IconButton(
                         onClick = {
@@ -61,7 +71,16 @@ fun MainScreen(context: Context) {
                 actions = {
                     IconButton(
                         onClick = {
-                            Toast.makeText(context, "Delete", Toast.LENGTH_SHORT).show()
+                            coroutineScope.launch{
+                                val result = scaffoldState.snackbarHostState.showSnackbar(
+                                    message = "Item deleted!",
+                                    actionLabel = "Undone"
+                                )
+                                if(result == SnackbarResult.ActionPerformed){
+                                    Toast.makeText(context, "Item recovered", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            }
                         }
                     ) {
                         Icon(
