@@ -60,7 +60,9 @@ fun MainScreen(context: Context) {
                 navigationIcon = {
                     IconButton(
                         onClick = {
-                            Toast.makeText(context, "Menu", Toast.LENGTH_SHORT).show()
+                            coroutineScope.launch {
+                                scaffoldState.drawerState.open()
+                            }
                         }
                     ) {
                         Icon(
@@ -98,7 +100,11 @@ fun MainScreen(context: Context) {
                     }
                 }
             )
-        }
+        },
+    drawerContent = {
+        DrawerHeader()
+        DrawerBody()
+    }
     ) {
     }
 }
