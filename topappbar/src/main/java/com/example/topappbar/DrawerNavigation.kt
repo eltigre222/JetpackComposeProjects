@@ -21,7 +21,7 @@ fun DrawerHeader() {
         modifier = Modifier
             .fillMaxWidth()
             .height(170.dp)
-            .background(Color.Blue),
+            .background(Color.Gray),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -32,6 +32,7 @@ fun DrawerHeader() {
         )
     }
 }
+
 @Composable
 fun DrawerBody() {
     LazyColumn(modifier = Modifier.fillMaxWidth()) {

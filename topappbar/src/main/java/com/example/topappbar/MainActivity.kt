@@ -31,6 +31,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MainScreen(context: Context) {
