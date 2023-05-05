@@ -9,6 +9,7 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.example.infoapp.ui.theme.JetpackComposeProjectsTheme
+import com.example.infoapp.ui_components.DrawerMenu
 import com.example.infoapp.ui_components.MainTopBar
 
 class MainActivity : ComponentActivity() {
@@ -28,6 +29,9 @@ class MainActivity : ComponentActivity() {
                             title = topBarTitle.value,
                             scaffoldState
                         )
+                    },
+                    drawerContent = {
+                        DrawerMenu()
                     }
                 ) {
 
