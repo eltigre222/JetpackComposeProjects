@@ -8,9 +8,12 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import com.example.infoapp.ui.theme.JetpackComposeProjectsTheme
 import com.example.infoapp.ui_components.DrawerMenu
 import com.example.infoapp.ui_components.MainTopBar
+import com.example.infoapp.utils.DrawerEvents
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -18,6 +21,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val scaffoldState = rememberScaffoldState()
+            val coroutineScope = rememberCoroutineScope()
             val topBarTitle = remember{
                 mutableStateOf("Spain")
             }
@@ -31,7 +35,16 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                     drawerContent = {
-                        DrawerMenu()
+                        DrawerMenu(){ event->
+                            when(event){
+                                is DrawerEvents.OnItemClick ->{
+                                    topBarTitle.value = event.title
+                                }
+                            }
+                            coroutineScope.launch {
+                                scaffoldState.drawerState.close()
+                            }
+                        }
                     }
                 ) {
 
