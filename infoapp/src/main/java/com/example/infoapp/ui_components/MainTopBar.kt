@@ -39,7 +39,6 @@ fun MainTopBar(title: String, scaffoldState: ScaffoldState) {
         actions = {
             IconButton(
                 onClick = {
-
                 }
             ) {
                 Icon(
