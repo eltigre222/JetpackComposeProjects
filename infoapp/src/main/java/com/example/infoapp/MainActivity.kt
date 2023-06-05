@@ -16,6 +16,7 @@ import com.example.infoapp.utils.DrawerEvents
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,7 @@ class MainActivity : ComponentActivity() {
             val topBarTitle = remember{
                 mutableStateOf("Spain")
             }
+
             JetpackComposeProjectsTheme {
                 Scaffold(
                     scaffoldState = scaffoldState,
