@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun MainTopBar(title: String, scaffoldState: ScaffoldState) {
     val coroutine = rememberCoroutineScope()
+
     TopAppBar(
         title = {
             Text(text = title)
@@ -39,7 +40,6 @@ fun MainTopBar(title: String, scaffoldState: ScaffoldState) {
         actions = {
             IconButton(
                 onClick = {
-
                 }
             ) {
                 Icon(
