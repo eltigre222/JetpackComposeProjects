@@ -7,4 +7,19 @@
         <item>Bundesleague</item>
         <item>League 1</item>
     </string-array>
+    
+    <string-array name="england">
+        <item>Manchester United|mu.webp</item>
+        <item>Liverpool|liver.webp</item>
+    </string-array>
+
+    <string-array name="spain">
+        <item>Real Madrid|real.webp</item>
+        <item>Barcelona|barca.webp</item>
+    </string-array>
+
+    <string-array name="italy">
+        <item>Milan|milan.webp</item>
+        <item>Juventus|juve.webp</item>
+    </string-array>
 </resources>
