@@ -29,7 +29,6 @@ import com.example.infoapp.utils.ListItem
 
 @Composable
 fun MainListItem(item: ListItem) {
-
     Card(
         modifier = Modifier
             .fillMaxWidth()

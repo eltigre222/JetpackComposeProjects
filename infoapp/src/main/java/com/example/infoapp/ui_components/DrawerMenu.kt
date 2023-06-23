@@ -48,7 +48,6 @@ fun DrawerMenu(onEvent: (DrawerEvents) -> Unit) {
         }
     }
 }
-
 @Composable
 fun Header(){
     Card(
@@ -83,6 +82,7 @@ fun Header(){
         }
     }
 }
+
 @Composable
 fun Body(onEvent: (DrawerEvents) -> Unit){
     val list = stringArrayResource(id = R.array.drawer_list)

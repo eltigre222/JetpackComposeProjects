@@ -71,7 +71,6 @@ class  MainActivity : ComponentActivity() {
         }
     }
 }
-
 private fun getListItemsByIndex(index: Int, context: Context): List<ListItem> {
     val list = ArrayList<ListItem>()
     val arrayList = context.resources.getStringArray(IdArrayList.listId[index])
