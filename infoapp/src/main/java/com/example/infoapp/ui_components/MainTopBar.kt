@@ -10,7 +10,6 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.graphics.Color
 import com.example.infoapp.ui.theme.GrayBlue
 import kotlinx.coroutines.launch
 

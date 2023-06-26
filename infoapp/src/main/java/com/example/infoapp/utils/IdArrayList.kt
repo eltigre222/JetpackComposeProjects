@@ -6,6 +6,8 @@ object IdArrayList {
     val listId = listOf(
         R.array.england,
         R.array.spain,
-        R.array.italy
+        R.array.italy,
+        R.array.germany,
+        R.array.france
     )
 }
