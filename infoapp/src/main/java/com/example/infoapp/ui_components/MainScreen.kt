@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun MainScreen(context: Context) {
+fun MainScreen(context: Context, onClick: (ListItem) -> Unit) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
     val mainList = remember{
@@ -54,7 +54,9 @@ fun MainScreen(context: Context) {
     ) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(mainList.value) { item->
-                MainListItem(item = item)
+                MainListItem(item = item) { listItem ->  
+                   onClick(listItem)
+                }
             }
         }
     }
