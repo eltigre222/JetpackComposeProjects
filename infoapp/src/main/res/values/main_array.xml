@@ -9,28 +9,28 @@
     </string-array>
     
     <string-array name="england">
-        <item>Manchester United|mu.webp</item>
-        <item>Liverpool|liver.webp</item>
+        <item>Manchester United|mu.webp|real.html</item>
+        <item>Liverpool|liver.webp|real.html</item>
     </string-array>
 
     <string-array name="spain">
-        <item>Real Madrid|real.webp</item>
-        <item>Barcelona|barca.webp</item>
+        <item>Real Madrid|real.webp|real.html</item>
+        <item>Barcelona|barca.webp|real.html</item>
     </string-array>
 
     <string-array name="italy">
-        <item>Milan|milan.webp</item>
-        <item>Juventus|juve.webp</item>
+        <item>Milan|milan.webp|real.html</item>
+        <item>Juventus|juve.webp|real.html</item>
     </string-array>
 
     <string-array name="germany">
-        <item>Bayern|bayern.webp</item>
-        <item>Borussia Dortmund|borussia.webp</item>
+        <item>Bayern|bayern.webp|real.html</item>
+        <item>Borussia Dortmund|borussia.webp|real.html</item>
     </string-array>
 
     <string-array name="france">
-        <item>Bayern|bayern.webp</item>
-        <item>Borussia Dortmund|borussia.webp</item>
+        <item>Bayern|bayern.webp|real.html</item>
+        <item>Borussia Dortmund|borussia.webp|real.html</item>
     </string-array>
 
 </resources>

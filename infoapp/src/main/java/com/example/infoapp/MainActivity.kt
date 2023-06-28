@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.infoapp.ui.theme.JetpackComposeProjectsTheme
+import com.example.infoapp.ui_components.InfoScreen
 import com.example.infoapp.ui_components.MainScreen
 import com.example.infoapp.utils.ListItem
 import com.example.infoapp.utils.Routes
@@ -29,7 +30,7 @@ class  MainActivity : ComponentActivity() {
                         }
                     }
                     composable(Routes.INFO_SCREEN) {
-
+                            InfoScreen(item = item!!)
                     }
                 }
             }

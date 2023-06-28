@@ -70,7 +70,8 @@ private fun getListItemsByIndex(index: Int, context: Context): List<ListItem> {
         list.add(
             ListItem(
                 itemArray[0],
-                itemArray[1]
+                itemArray[1],
+                itemArray[2]
             )
         )
     }
