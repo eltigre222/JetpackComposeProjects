@@ -11,7 +11,6 @@ import com.example.infoapp.ui_components.InfoScreen
 import com.example.infoapp.ui_components.MainScreen
 import com.example.infoapp.utils.ListItem
 import com.example.infoapp.utils.Routes
-
 class  MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -38,7 +38,6 @@ fun InfoScreen(item: ListItem) {
         }
     }
 }
-
 @Composable
 fun HtmlLoader(htmlName: String) {
     val context = LocalContext.current
