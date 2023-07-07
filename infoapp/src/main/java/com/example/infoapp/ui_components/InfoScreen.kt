@@ -15,7 +15,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.example.infoapp.utils.ListItem
-
 @Composable
 fun InfoScreen(item: ListItem) {
     Card(
@@ -38,7 +37,6 @@ fun InfoScreen(item: ListItem) {
         }
     }
 }
-
 @Composable
 fun HtmlLoader(htmlName: String) {
     val context = LocalContext.current
