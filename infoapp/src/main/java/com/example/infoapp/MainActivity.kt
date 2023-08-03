@@ -26,7 +26,7 @@ class  MainActivity : ComponentActivity() {
                     startDestination = Routes.MAIN_SCREEN
                 ) {
                     composable(Routes.MAIN_SCREEN) {
-                        MainScreen(context = this@MainActivity) { listItem ->
+                        MainScreen{ listItem ->
                             item = listItem
                             navController.navigate(Routes.INFO_SCREEN)
                         }
