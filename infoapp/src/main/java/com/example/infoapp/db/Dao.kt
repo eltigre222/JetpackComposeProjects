@@ -6,15 +6,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.infoapp.utils.ListItem
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface Dao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertItem (item:ListItem)
-
+    suspend fun insertItem(item: ListItem)
     @Delete
-    suspend fun deleteItem(item:ListItem)
-
+    suspend fun deleteItem(item: ListItem)
     @Query("SELECT * FROM main WHERE category LIKE :cat")
     suspend fun getAllItemsByCategory(cat: String): List<ListItem>
 }
