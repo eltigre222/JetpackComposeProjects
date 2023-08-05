@@ -30,7 +30,7 @@ fun MainScreen(
     val topBarTitle = remember{
         mutableStateOf("Spain")
     }
-    mainViewModel.getAllItemsByCategory(topBarTitle.value)
+    mainViewModel.getAllItemsByCategory(topBarTitle.value )
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
