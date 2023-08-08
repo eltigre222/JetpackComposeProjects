@@ -12,8 +12,10 @@ import kotlinx.coroutines.flow.Flow
 interface Dao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItem(item: ListItem)
+
     @Delete
     suspend fun deleteItem(item: ListItem)
+
     @Query("SELECT * FROM main WHERE category LIKE :cat")
     suspend fun getAllItemsByCategory(cat: String): List<ListItem>
 }
