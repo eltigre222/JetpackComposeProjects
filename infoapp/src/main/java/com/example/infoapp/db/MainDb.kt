@@ -8,6 +8,7 @@ import com.example.infoapp.utils.ListItem
     entities = [ListItem::class],
     version = 1
 )
+
 abstract class MainDb : RoomDatabase() {
     abstract val dao: Dao
 }
