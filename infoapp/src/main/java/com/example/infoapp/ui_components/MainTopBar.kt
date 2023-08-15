@@ -10,11 +10,17 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.infoapp.MainViewModel
 import com.example.infoapp.ui.theme.GrayBlue
 import kotlinx.coroutines.launch
 
 @Composable
-fun MainTopBar(title: String, scaffoldState: ScaffoldState) {
+fun MainTopBar(
+    title: String,
+    scaffoldState: ScaffoldState,
+    onFavCLick:() -> Unit
+) {
     val coroutine = rememberCoroutineScope()
 
     TopAppBar(
@@ -39,6 +45,7 @@ fun MainTopBar(title: String, scaffoldState: ScaffoldState) {
         actions = {
             IconButton(
                 onClick = {
+                    onFavCLick()
                 }
             ) {
                 Icon(

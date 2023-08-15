@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -30,14 +31,19 @@ fun MainScreen(
     val topBarTitle = remember{
         mutableStateOf("Spain")
     }
-    mainViewModel.getAllItemsByCategory(topBarTitle.value )
+    LaunchedEffect(Unit){
+        mainViewModel.getAllItemsByCategory(topBarTitle.value)
+    }
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
             MainTopBar(
                 title = topBarTitle.value,
                 scaffoldState
-            )
+            ){
+                topBarTitle.value = "Favorite"
+                mainViewModel.getFavorites()
+            }
         },
         drawerContent = {
             DrawerMenu(){ event->
