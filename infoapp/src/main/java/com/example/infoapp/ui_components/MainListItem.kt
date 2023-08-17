@@ -110,7 +110,6 @@ fun MainListItem(
         }
     }
 }
-
 @Composable
 fun AssetImage(imageName: String, contentDescription: String, modifier: Modifier) {
     val context = LocalContext.current
