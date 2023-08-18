@@ -17,7 +17,6 @@ class MainViewModel @Inject constructor(
 ): ViewModel() {
     val mainList = mutableStateOf(emptyList<ListItem>())
     private var job: Job? = null
-
     fun getAllItemsByCategory(cat: String){
         job?.cancel()
         job = viewModelScope.launch {
@@ -26,7 +25,6 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-
     fun getFavorites(){
         job?.cancel()
         job = viewModelScope.launch {
@@ -35,11 +33,9 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-
     fun insertItem(item: ListItem) = viewModelScope.launch {
         mainDb.dao.insertItem(item)
     }
-
     fun deleteItem(item: ListItem) = viewModelScope.launch {
         mainDb.dao.deleteItem(item)
     }
