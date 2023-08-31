@@ -35,11 +35,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val pointsList = getPointsList()
+            val max = getMax(pointsList)
+            val min = getMin(pointsList)
             val xAxisData = AxisData.Builder()
                 .axisStepSize(100.dp)
                 .backgroundColor(Color.LightGray )
                 .steps(pointsList.size - 1)
-                .labelData { i -> i.toString() + "day" }
+                .labelData { i -> i.toString() + "d" }
                 .labelAndAxisLinePadding(15.dp)
                 .build()
 
@@ -47,8 +49,9 @@ class MainActivity : ComponentActivity() {
                 .steps(steps)
                 .backgroundColor(Color.LightGray)
                 .labelAndAxisLinePadding(20.dp)
-                .labelData {
-                    i -> i.toString()
+                .labelData { i ->
+                    val yScale = (max - min) / steps.toFloat()
+                    String.format("%.1f", ((i * yScale) + min))
                 }.build()
             JetpackComposeProjectsTheme {
                 val lineChartData = LineChartData(
@@ -85,10 +88,26 @@ class MainActivity : ComponentActivity() {
             list.add(
                 Point(
                     i.toFloat(),
-                    Random.nextInt(50, 80).toFloat()
+                    Random.nextInt(50, 90).toFloat()
                 )
             )
         }
         return list
+    }
+
+    private fun getMax(list: List<Point>): Float{
+        var max = 0F
+        list.forEach { point ->
+            if (max < point.y) max = point.y
+        }
+        return max
+    }
+
+    private fun getMin(list: List<Point>): Float{
+        var min = 100F
+        list.forEach { point ->
+            if (min > point.y) min = point.y
+        }
+        return min
     }
 }
