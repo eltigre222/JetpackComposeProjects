@@ -4,16 +4,15 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="testRunner" value="GRADLE" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="jbr-17" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/bottomnavigationlesson" />
             <option value="$PROJECT_DIR$/constraintlayoutlesson" />
+            <option value="$PROJECT_DIR$/drawapp" />
             <option value="$PROJECT_DIR$/infoapp" />
             <option value="$PROJECT_DIR$/navigationcompose" />
             <option value="$PROJECT_DIR$/rouletteapp" />
@@ -21,6 +20,7 @@
             <option value="$PROJECT_DIR$/topappbar" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

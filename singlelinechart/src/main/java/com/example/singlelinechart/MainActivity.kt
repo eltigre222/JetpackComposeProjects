@@ -30,6 +30,7 @@ import com.example.singlelinechart.ui.theme.JetpackComposeProjectsTheme
 import kotlin.random.Random
 
 const val steps = 10
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +82,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
     fun getPointsList(): List<Point> {
         val list = ArrayList<Point>()
         for (i in 0..30) {
@@ -94,7 +94,6 @@ class MainActivity : ComponentActivity() {
         }
         return list
     }
-
     private fun getMax(list: List<Point>): Float{
         var max = 0F
         list.forEach { point ->
@@ -102,7 +101,6 @@ class MainActivity : ComponentActivity() {
         }
         return max
     }
-
     private fun getMin(list: List<Point>): Float{
         var min = 100F
         list.forEach { point ->
