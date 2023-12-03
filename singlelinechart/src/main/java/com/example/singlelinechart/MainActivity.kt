@@ -3,16 +3,10 @@ package com.example.singlelinechart
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import co.yml.charts.axis.AxisData
 import co.yml.charts.common.model.Point
@@ -32,6 +26,7 @@ import kotlin.random.Random
 const val steps = 10
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -82,7 +77,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
     fun getPointsList(): List<Point> {
         val list = ArrayList<Point>()
         for (i in 0..30) {
@@ -95,7 +89,6 @@ class MainActivity : ComponentActivity() {
         }
         return list
     }
-
     private fun getMax(list: List<Point>): Float{
         var max = 0F
         list.forEach { point ->
@@ -103,7 +96,6 @@ class MainActivity : ComponentActivity() {
         }
         return max
     }
-
     private fun getMin(list: List<Point>): Float{
         var min = 100F
         list.forEach { point ->
