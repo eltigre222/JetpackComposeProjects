@@ -30,6 +30,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @Composable
 fun DrawCanvas() {
     val tempPath = Path()
