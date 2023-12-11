@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import com.example.drawapp.ui.BottomPanel
@@ -31,9 +32,15 @@ class MainActivity : ComponentActivity() {
             JetpackComposeProjectsTheme {
                 Column {
                     DrawCanvas(pathData)
-                    BottomPanel { color ->
+                    BottomPanel(
+                        { color ->
+                            pathData.value = pathData.value.copy(
+                                color = color
+                            )
+                        }
+                    ) { lineWidth ->
                         pathData.value = pathData.value.copy(
-                            color = color
+                            lineWidth = lineWidth
                         )
                     }
                 }
@@ -51,7 +58,7 @@ fun DrawCanvas(pathData: MutableState<PathData>) {
     Canvas(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.85f)
+            .fillMaxHeight(0.75f)
             .pointerInput(true) {
                 detectDragGestures(
                     onDragStart = {
@@ -88,7 +95,10 @@ fun DrawCanvas(pathData: MutableState<PathData>) {
             drawPath(
                 pathData.path,
                 color = pathData.color,
-                style = Stroke(5f)
+                style = Stroke(
+                    pathData.lineWidth,
+                    cap = StrokeCap.Round
+                )
             )
         }
     }
