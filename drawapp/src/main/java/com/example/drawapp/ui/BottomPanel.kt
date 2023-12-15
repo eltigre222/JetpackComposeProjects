@@ -39,7 +39,6 @@ fun BottomPanel (onClick: (Color) -> Unit, onLineWidthChange: (Float) -> Unit) {
         }
     }
 }
-
 @Composable
 fun ColorList(onClick: (Color) -> Unit) {
     val colors = listOf(
@@ -75,7 +74,6 @@ fun CustomSlider(onChange: (Float) -> Unit) {
     var position by remember {
         mutableStateOf(0.05f)
     }
-
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text("Line width: ${(position * 100).toInt()}")
         Slider(
