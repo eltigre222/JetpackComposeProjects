@@ -48,6 +48,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @Composable
 fun DrawCanvas(pathData: MutableState<PathData>) {
     var tempPath = Path()
