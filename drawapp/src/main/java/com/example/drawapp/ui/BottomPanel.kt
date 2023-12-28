@@ -39,7 +39,6 @@ fun BottomPanel (onClick: (Color) -> Unit, onLineWidthChange: (Float) -> Unit) {
         }
     }
 }
-
 @Composable
 fun ColorList(onClick: (Color) -> Unit) {
     val colors = listOf(
@@ -50,7 +49,6 @@ fun ColorList(onClick: (Color) -> Unit) {
         Color.Yellow,
         Color.Magenta
     )
-
     LazyRow(
         modifier = Modifier.padding(10.dp)
     ) {
@@ -69,7 +67,6 @@ fun ColorList(onClick: (Color) -> Unit) {
         }
     }
 }
-
 @Composable
 fun CustomSlider(onChange: (Float) -> Unit) {
     var position by remember {
