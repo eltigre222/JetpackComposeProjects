@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Slider
@@ -29,13 +30,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.drawapp.R
 
 @Composable
 fun BottomPanel (
     onClick: (Color) -> Unit,
     onLineWidthChange: (Float) -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onCapClick: (StrokeCap) -> Unit
 ){
     Column(
         modifier = Modifier
@@ -49,8 +54,10 @@ fun BottomPanel (
         CustomSlider { lineWidth ->
             onLineWidthChange(lineWidth)
         }
-        ButtonPanel {
+        ButtonPanel({
             onBackClick()
+        }) { cap ->
+            onCapClick(cap)
         }
         Spacer(modifier = Modifier.height(5.dp))
     }
@@ -102,24 +109,71 @@ fun CustomSlider(onChange: (Float) -> Unit) {
 }
 
 @Composable
-fun ButtonPanel(onClick: () -> Unit) {
+fun ButtonPanel(onClick: () -> Unit, onCapClick: (StrokeCap) -> Unit) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        modifier = Modifier.fillMaxWidth()
     ) {
-        IconButton(
+        Row(
             modifier = Modifier
-                .clip(CircleShape)
-                .background(Color.White),
-            onClick = {
-            onClick()
-        }) {
-            Icon(
-                Icons.Default.CheckCircle,
-                contentDescription = null
-            )
+                .fillMaxWidth(0.5f)
+                .padding(start = 10.dp, end = 10.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            IconButton(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .background(Color.White),
+                onClick = {
+                    onClick()
+                }) {
+                Icon(
+                    Icons.Default.Clear,
+                    contentDescription = null
+                )
+            }
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(end = 10.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            IconButton(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .background(Color.White),
+                onClick = {
+                    onCapClick(StrokeCap.Round)
+                }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.cap_1),
+                    contentDescription = null
+                )
+            }
+            IconButton(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .background(Color.White),
+                onClick = {
+                    onCapClick(StrokeCap.Square)
+                }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.cap_2),
+                    contentDescription = null
+                )
+            }
+            IconButton(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .background(Color.White),
+                onClick = {
+                    onCapClick(StrokeCap.Butt)
+                }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.cap_3),
+                    contentDescription = null
+                )
+            }
         }
     }
 }
