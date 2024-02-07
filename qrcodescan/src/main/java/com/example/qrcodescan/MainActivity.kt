@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
@@ -28,6 +29,8 @@ import com.example.qrcodescan.ui.theme.JetpackComposeProjectsTheme
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanOptions
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,9 +42,29 @@ class MainActivity : ComponentActivity() {
 
     private val scanLauncher = registerForActivityResult(ScanContract()) { result ->
         if (result.contents == null) {
-
+            Toast.makeText(this, "Scan data is null", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(this, "Scan data: ${result.contents}", Toast.LENGTH_SHORT).show()
+            CoroutineScope(Dispatchers.IO).launch {
+                val productByQr = mainDb.dao.getProductByQr(result.contents)
+                if (productByQr == null) {
+                    mainDb.dao.insertProduct(
+                        Product(
+                            null,
+                            "Product - ${counter++}",
+                            result.contents
+                        )
+                    )
+                    runOnUiThread {
+                        Toast.makeText(this@MainActivity, "Item is saved", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                } else {
+                    runOnUiThread {
+                        Toast.makeText(this@MainActivity, "Duplicated item", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
         }
     }
 
@@ -51,8 +74,6 @@ class MainActivity : ComponentActivity() {
 
             val productStateList = mainDb.dao.getAllProducts()
                 .collectAsState(initial = emptyList())
-
-            val coroutineScope = rememberCoroutineScope()
 
             JetpackComposeProjectsTheme {
                 Column(
@@ -66,26 +87,26 @@ class MainActivity : ComponentActivity() {
                             .fillMaxHeight(0.9f),
                     ) {
                         items(productStateList.value) { product ->
-                            Text(
-                                modifier = Modifier.fillMaxWidth(),
-                                text = product.name,
-                                textAlign = TextAlign.Center
-                            )
                             Spacer(modifier = Modifier.height(10.dp))
+                            Card(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(start = 10.dp, end = 10.dp)
+                            ) {
+                                Text(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(15.dp),
+                                    text = product.name,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
                         }
                     }
                     Button(onClick = {
-                        coroutineScope.launch {
-                            mainDb.dao.insertProduct(
-                                Product(
-                                    null,
-                                    "Product ${counter++}",
-                                    "asdkgutpw" 
-                                )
-                            )
-                        }
+                        scan()
                     }) {
-                        Text(text = "Create data")
+                        Text(text = "Add new product")
                     }
                 }
             }
