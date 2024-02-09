@@ -16,11 +16,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.qrcodescan.data.MainDb
@@ -67,6 +69,20 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+    private val scanCheckLauncher = registerForActivityResult(ScanContract()) { result ->
+        if (result.contents == null) {
+            Toast.makeText(this, "Scan data is null", Toast.LENGTH_SHORT).show()
+        } else {
+            CoroutineScope(Dispatchers.IO).launch {
+                val productByQr = mainDb.dao.getProductByQr(result.contents)
+                if (productByQr == null) {
+                    Toast.makeText(this@MainActivity, "Product not added", Toast.LENGTH_SHORT).show()
+                } else {
+                    mainDb.dao.updateProduct(productByQr.copy(isChecked = true))
+                }
+            }
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -83,14 +99,26 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .padding(15.dp)
                             .fillMaxWidth()
-                            .fillMaxHeight(0.9f),
+                            .fillMaxHeight(0.7f),
                     ) {
                         items(productStateList.value) { product ->
                             Spacer(modifier = Modifier.height(10.dp))
                             Card(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(start = 10.dp, end = 10.dp)
+                                    .padding(start = 10.dp, end = 10.dp),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = if (product.isChecked) {
+                                        Color.Blue
+                                    } else {
+                                        Color.Yellow
+                                    },
+                                    contentColor = if (product.isChecked) {
+                                        Color.Yellow
+                                    } else {
+                                        Color.Blue
+                                    }
+                                )
                             ) {
                                 Text(
                                     modifier = Modifier
@@ -108,16 +136,28 @@ class MainActivity : ComponentActivity() {
                         Text(text = "Add new product")
                     }
                 }
+                Button(onClick = {
+                    scanCheck()
+                }) {
+                    Text(text = "Check product")
+                }
             }
         }
     }
     private fun scan() {
-        val options = ScanOptions()
-        options.setDesiredBarcodeFormats(ScanOptions.QR_CODE)
-        options.setPrompt("Scan a barcode")
-        options.setCameraId(0)
-        options.setBeepEnabled(false)
-        options.setBarcodeImageEnabled(true)
-        scanLauncher.launch(options)
+        scanLauncher.launch(getScanOptions())
+    }
+    private fun scanCheck() {
+        scanCheckLauncher.launch(getScanOptions())
+    }
+
+    private fun getScanOptions(): ScanOptions {
+        return ScanOptions().apply {
+            setDesiredBarcodeFormats(ScanOptions.QR_CODE)
+            setPrompt("Scan a barcode")
+            setCameraId(0)
+            setBeepEnabled(false)
+            setBarcodeImageEnabled(true)
+        }
     }
 }
