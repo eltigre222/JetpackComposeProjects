@@ -69,7 +69,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
     private val scanCheckLauncher = registerForActivityResult(ScanContract()) { result ->
         if (result.contents == null) {
             Toast.makeText(this, "Scan data is null", Toast.LENGTH_SHORT).show()
@@ -84,7 +83,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
