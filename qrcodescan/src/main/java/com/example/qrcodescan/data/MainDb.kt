@@ -7,7 +7,6 @@ import androidx.room.RoomDatabase
     entities = [Product::class],
     version = 1
 )
-
 abstract class MainDb : RoomDatabase() {
     abstract val dao: Dao
 }

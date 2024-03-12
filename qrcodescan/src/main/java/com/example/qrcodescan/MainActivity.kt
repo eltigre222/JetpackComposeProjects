@@ -83,10 +83,10 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
             val productStateList = mainDb.dao.getAllProducts()
                 .collectAsState(initial = emptyList())
 
@@ -144,7 +144,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
     private fun scan() {
         scanLauncher.launch(getScanOptions())
     }
@@ -152,7 +151,6 @@ class MainActivity : ComponentActivity() {
     private fun scanCheck() {
         scanCheckLauncher.launch(getScanOptions())
     }
-
     private fun getScanOptions(): ScanOptions {
         return ScanOptions().apply {
             setDesiredBarcodeFormats(ScanOptions.QR_CODE)
