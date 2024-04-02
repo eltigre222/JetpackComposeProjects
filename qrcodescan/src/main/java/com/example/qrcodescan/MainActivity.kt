@@ -41,7 +41,6 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var mainDb: MainDb
     var counter = 0
-
     private val scanLauncher = registerForActivityResult(ScanContract()) { result ->
         if (result.contents == null) {
             Toast.makeText(this, "Scan data is null", Toast.LENGTH_SHORT).show()
@@ -69,7 +68,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
     private val scanCheckLauncher = registerForActivityResult(ScanContract()) { result ->
         if (result.contents == null) {
             Toast.makeText(this, "Scan data is null", Toast.LENGTH_SHORT).show()
@@ -84,7 +82,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -145,13 +142,15 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-    
+
     private fun scan() {
         scanLauncher.launch(getScanOptions())
     }
+
     private fun scanCheck() {
         scanCheckLauncher.launch(getScanOptions())
     }
+
     private fun getScanOptions(): ScanOptions {
         return ScanOptions().apply {
             setDesiredBarcodeFormats(ScanOptions.QR_CODE)
