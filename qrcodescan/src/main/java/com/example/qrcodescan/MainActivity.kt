@@ -133,17 +133,18 @@ class MainActivity : ComponentActivity() {
                     Button(onClick = {
                         scan()
                     }) {
-                        Text(text = "Add new product")
+                        Text(text = "Add new item")
                     }
                 }
                 Button(onClick = {
                     scanCheck()
                 }) {
-                    Text(text = "Check product")
+                    Text(text = "Check item")
                 }
             }
         }
     }
+
     private fun scan() {
         scanLauncher.launch(getScanOptions())
     }
@@ -151,6 +152,7 @@ class MainActivity : ComponentActivity() {
     private fun scanCheck() {
         scanCheckLauncher.launch(getScanOptions())
     }
+
     private fun getScanOptions(): ScanOptions {
         return ScanOptions().apply {
             setDesiredBarcodeFormats(ScanOptions.QR_CODE)
