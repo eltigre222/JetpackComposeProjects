@@ -4,7 +4,6 @@ import  android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -19,7 +18,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -68,6 +66,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
     private val scanCheckLauncher = registerForActivityResult(ScanContract()) { result ->
         if (result.contents == null) {
             Toast.makeText(this, "Scan data is null", Toast.LENGTH_SHORT).show()
