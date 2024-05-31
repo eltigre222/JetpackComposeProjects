@@ -80,7 +80,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -141,12 +140,14 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
     private fun scan() {
         scanLauncher.launch(getScanOptions())
     }
     private fun scanCheck() {
         scanCheckLauncher.launch(getScanOptions())
     }
+
     private fun getScanOptions(): ScanOptions {
         return ScanOptions().apply {
             setDesiredBarcodeFormats(ScanOptions.QR_CODE)
