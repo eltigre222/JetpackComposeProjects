@@ -16,6 +16,7 @@ fun Screen1() {
         textAlign = TextAlign.Center
     )
 }
+
 @Composable
 fun Screen2() {
     Text(
@@ -24,6 +25,7 @@ fun Screen2() {
         textAlign = TextAlign.Center
     )
 }
+
 @Composable
 fun Screen3() {
     Text(
@@ -32,6 +34,7 @@ fun Screen3() {
         textAlign = TextAlign.Center
     )
 }
+
 @Composable
 fun Screen4() {
     Text(
