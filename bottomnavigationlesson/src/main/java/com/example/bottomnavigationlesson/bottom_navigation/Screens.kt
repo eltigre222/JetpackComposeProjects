@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 
-
 @Composable
 fun Screen1() {
     Text(
@@ -16,7 +15,6 @@ fun Screen1() {
         textAlign = TextAlign.Center
     )
 }
-
 @Composable
 fun Screen2() {
     Text(
@@ -25,7 +23,6 @@ fun Screen2() {
         textAlign = TextAlign.Center
     )
 }
-
 @Composable
 fun Screen3() {
     Text(
@@ -34,7 +31,6 @@ fun Screen3() {
         textAlign = TextAlign.Center
     )
 }
-
 @Composable
 fun Screen4() {
     Text(
