@@ -16,7 +16,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import com.example.drawapp.ui.BottomPanel
@@ -62,7 +61,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 @Composable
 fun DrawCanvas(pathData: MutableState<PathData>, pathList: SnapshotStateList<PathData>) {
     var tempPath = Path()
