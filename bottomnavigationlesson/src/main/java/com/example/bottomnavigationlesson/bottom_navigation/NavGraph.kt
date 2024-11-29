@@ -13,15 +13,12 @@ fun NavGraph(
         composable("screen_1"){
             Screen1()
         }
-
         composable("screen_2"){
             Screen2()
         }
-
         composable("screen_3"){
             Screen3()
         }
-
         composable("screen_4"){
             Screen4()
         }
